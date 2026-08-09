@@ -15,6 +15,16 @@ In total, the experiment can be put together for a total cost of around 500 USD.
 
 Link to the shopping list document.
 
+### Assembling the Geiger Counters
+
+![MightyOhm Kit Pre-Assembly](media/geiger-kit-pre-assembly.jpg)
+
+![MightyOhm Kit Pre-Assembly](media/geiger-kit-post-assembly.jpg)
+
+### Testing the Geiger Counters
+
+[![Testing the Geiger Counters with Na-22 Source](https://img.youtube.com/vi/xobj9LGZI20/0.jpg)](https://www.youtube.com/watch?v=xobj9LGZI20)
+
 ## Programming the Microcontroller
 
 How to install Arduino IDA, setup dependencies, configure for sound, and install code.
@@ -58,6 +68,8 @@ Show detailed wiring diagram.
 
 
 ```
+
+[![Detecting Simultaneous Entangled Photons](https://img.youtube.com/vi/ERMolkiLw2E/0.jpg)](https://www.youtube.com/watch?v=ERMolkiLw2E)
 
 ### Setting up DFRobot DFPlayer Mini
 
@@ -107,6 +119,8 @@ Note that polarity to the speaker terminals does not matter.
 DFPlayer SPK_1           → speaker terminal 1
 DFPlayer SPK_2           → speaker terminal 2
 ```
+
+[![Playing an MP3 Upon Photon Detection](https://img.youtube.com/vi/wpQJMHlid0s/0.jpg)](https://www.youtube.com/watch?v=wpQJMHlid0s)
 
 ## Collecting and Analyzing Data
 
