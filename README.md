@@ -23,6 +23,34 @@ How to install Arduino IDA, setup dependencies, configure for sound, and install
 
 Show detailed wiring diagram.
 
+```
+                 Arduino Nano ESP32
+                  TOP VIEW
+
+              USB-C connector here
+                       ↑
+
+        LEFT HEADER                    RIGHT HEADER
+        ───────────                    ────────────
+        D13                            D12
+        3V3                            D11
+        B0                             D10
+        A0                             D9
+        A1                             D8
+        A2                             D7
+        A3                             D6
+        A4 / SDA                       D5
+        A5 / SCL                       D4
+        A6                             D3   ← Geiger RIGHT pulse
+        A7                             D2   ← Geiger LEFT pulse
+        VUSB                           GND  ← Geiger grounds connect here
+        B1                             RESET
+        GND                            D0 / RX0
+        VIN                            D1 / TX0
+
+→
+```
+
 ## Recording Data
 
 Describe how to connect a computer to the microcontroller to log data.
