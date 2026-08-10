@@ -57,7 +57,7 @@ Then select the board from the drop down list at the top of the interface:
 
 ### Adding Library Dependencies
 
-Before you can compile the sketch you must add the appropriate library dependencies. To do this, click on the icon that looks like a set of books on the left hand side of the IDE, to make the "Library Manager" appear, then in the search box, search for, and then add, each of the following libraries:
+Before you can compile the sketch you must add the appropriate library dependencies. To do this, click on the icon that looks like a set of books on the left hand side of the IDE, to make the `Library Manager` appear, then in the search box, search for, and then add, each of the following libraries:
 
 1. Adafruit BusIO
 2. Adafruit GFX Library
@@ -125,18 +125,33 @@ For playback of an arbitrary sound file as an audio alert upon detection of a ph
 
 #### Load MP3 File
 
-Format microSD card to FAT32 filesystem
-Add MP3 file to: /MP3/0001.mp3
-Insert SD Card into player
+First, obtain a microSD card and make sure it is formatted with the [FAT32 filesystem](https://en.wikipedia.org/wiki/File_Allocation_Table#FAT32). If it is not already formatted with this file system, you will need to reformat it. The size should be 16 GB or less.
 
-#### Wire the ESP32 to the DFPlayer
+Add the desired MP3 file to be played to the following path on that microSD card: `/MP3/0001.mp3`
+
+That is, first create a directory named `MP3` at the root level of the microSD card's filesystem, then place the MP3 file in that directory, and rename it to `0001.mp3`. This file will then play at the moment of any simultaneous detection by the Geiger counters.
+
+#### Connecting the ESP32 to the DFPlayer
+
+All wiring between the ESP32 and the DFPlayer is done on the left-side of the DFPlayer:
+
+![Arduino IDE](related-docs/dfplayer-mini-pin-layout.png)
+
+Connect via jumper wires the following four pins from the EST32 to the DFPlayer:
 
 ```
-                                    DFPlayerMini
-                                     TOP VIEW
-                   
-                                 USB-C connector here
-                                          ↑
+Nano ESP32 5V/VBUS/VIN-side  → DFPlayer VCC
+Nano ESP32 GND               → DFPlayer GND
+Nano ESP32 A2 pin            → 1 kΩ resistor → DFPlayer RX
+Nano ESP32 A1 pin            → DFPlayer TX
+```
+
+In the end, the DFPlayer Mini should appear like this:
+
+```
+                                       DFPlayer Mini
+                                         TOP VIEW
+
            
                            LEFT HEADER                    RIGHT HEADER
                            ───────────                    ────────────
@@ -150,14 +165,7 @@ Insert SD Card into player
      speaker terminal 2 →  SPK_2  ←|                      IO_1
 ```
 
-```
-Nano ESP32 5V/VBUS/VIN-side  → DFPlayer VCC
-Nano ESP32 GND               → DFPlayer GND
-Nano A2 pin                  → 1 kΩ resistor → DFPlayer RX
-Nano A1 pin                  → DFPlayer TX
-```
-
-Note: The 0.1 µF ceramic across the speaker pins helped reduce high frequency noise.
+Note: The 0.1 µF ceramic across the speaker pins is optional but can help reduce high frequency noise.
 
 #### Wire the DFPlayer to the Speaker
 
@@ -168,100 +176,142 @@ DFPlayer SPK_1           → speaker terminal 1
 DFPlayer SPK_2           → speaker terminal 2
 ```
 
+The speakers should be 3 Watt, 8 Ohm speakers. Note that `JST-PH 2.0mm 2 Pin Male Connectors` may simplify the connection of speakers to a breadboard, especially if the speakers come with `JST-PH 2.0` connectors.
+
+Once the speakers are wired correctly to the DFPlayer, you can verify that the MP3 file plays correctly upon a coincidence detection, as shown in this video:
+
 [![Playing an MP3 Upon Photon Detection](https://img.youtube.com/vi/wpQJMHlid0s/0.jpg)](https://www.youtube.com/watch?v=wpQJMHlid0s)
 
 ## Collecting and Analyzing Data
 
-Two scripts built in. One to log, another to analyze.
-Describe how to connect a computer to the microcontroller to log data.
+This project comes with scripts to collect and analyze data, and even comes with a number of pre-set experiments to peform. These scripts, and experiments, can be found in the [experiments](experiments) directory. The two scripts are:
+
+```
+log_geiger.py
+analyze_geiger_run.py
+```
+
+These are [python](https://en.wikipedia.org/wiki/Python_(programming_language)) scripts and require `python3` in order to run.
 
 ## Collecting Data
 
+When the Arduino device is connected to a computer via USB, the `log_geiger` script will connect to it and start outputting data to the screen. Each time either the left or right detector registers a detection event, it will output which detector sent the signal, and a microsecond-accurate timestamp of when it occurred. Periodically, the script will also report summary data.
+
+The detection event lines are prefaced with `E` while the summary report lines are prefaced with `S`:
+
+![Logging Events](media/log_geiger_screenshot.png)
+
+When you have collected sufficient data, you can end the logging script by sending an exit command (generally `Ctrl+C` on most systems).
+
+Note that running this script requires specification of the USB port to which the Arduino device is attached, this can vary from system to system, below are some examples:
+
+### Windows Devices
+
+```bash
+# Windows
+python3 log_geiger.py --port COM5 --out --out output_file.csv
+```
+
+### Linux Devices
+
+```bash
+# Linux
+python3 log_geiger.py --port /dev/ttyACM0 --out --out output_file.csv
+```
+
+### MacOS Devices
+```bash
+# macOS
+python3 log_geiger.py --port /dev/cu.usbmodem206EF13166CC2 --out output_file.csv
+```
+
+Note that the particular USB device name will change from system to system. The Arduino IDE displays the exact device name to use for logging.
 
 ### Analyzing Data
 
-Detail how 
+After collecting data and storing it to an output file, for example `output_file.csv` the analyze script can be run to report various statistics:
 
-Usage:
 
 ```bash
-python3 analyze_geiger_run_enhanced.py run.csv \
-  --out-prefix run_P1_perpendicular \
-  --run-id P1 \
+python3 analyze_geiger_run.py output_file.csv \
+  --out-prefix run_perpendicular_geometry \
+  --run-id R1 \
   --half-window-us 3 \
   --center-us 0 \
   --orientation perpendicular \
   --geometry "Al blocks, 90-degree scatter" \
-  --detector-separation "..." \
+  --detector-separation "100mm" \
   --source-position "centered" \
   --shielding "none" \
-  --aluminum present \
+  --aluminum "present" \
   --notes "overnight run, no bumps observed"
 ```
 
-```
-<prefix>_signed_delta_histogram.png
-<prefix>_window_scan.png
-<prefix>_window_scan_summary.csv
-<prefix>_run_log.csv
-<prefix>_run_log.json
-<prefix>_run_log.txt
-```
+This will result in the following output to the screen:
+
+![Logging Events](media/analyze_geiger_run_screenshot.png)
+
+The output information includes the run duration, total number of left and right events, as well as counts per minute for both detectors. It then reports, for various time windows ranging from 1 microsecond to 1000 microseconds, how many coincident events were observed within each of those windows. Generally 3 microseconds is the most robust, as it is narrow enough to register all genuine coincidences, without being so wide that it includes spurious events that occur near the same time but are not genuinely correlated.
+
+The rate of these spurious events are continuously estimated by looking for coincident events if the right or left detector's reported events are time-shifted by a significant period (say half a second). These are reported as `lag counts` and should be subtracted from the raw observed counts to yield a more accurate net count.
+
+In addition, it will also generate the following files:
 
 ```
-Raw CSV filename
-Host start/end time, if host_time_utc exists
-Board timestamp start/end
-Duration in seconds/minutes/hours
-Left total counts
-Right total counts
-Left CPM
-Right CPM
-Prompt coincidence count
-Average lagged coincidence count
-Lag counts by each lag offset
-Net coincidence count = prompt - average lag
-Prompt CPM
-Lag CPM
-Net CPM
-Simple significance: net / sqrt(prompt + avg_lag)
-Li & Ma on/off significance
-One-sided and two-sided normal-equivalent p-values
-Expected accidental coincidence rate from singles rates
-Arduino final summary values, if present
-Max droppedEvents, if present
+<out-prefix>_signed_delta_histogram.png
+<out-prefix>_window_scan.png
+<out-prefix>_window_scan_summary.csv
+<out-prefix>_run_log.csv
+<out-prefix>_run_log.json
+<out-prefix>_run_log.txt
 ```
+
+Where `<out-prefix>` was the parameter supplied to the script under `--out-prefix`.
+
+Here is an example of a generated histogram. It shows a genuine signal within the ±5 microseconds bucket, indicating a true excess of correlated events not observed for any of the other greater time-difference buckets:
+
+![Signed Histogram](media/run_signed_delta_histogram.png)
 
 
 ## Experimental Configurations
 
-Describe each run, how to get baselines of environmental noise.
-How to position each detector for each run.
-How to analyze data to demonstrate results.
+The minimum experiments required to demonstrate quantum entanglement are defined below. Note that for each of these experiments, a sub-directory has already been setup within the [experiments](experiments) directory, which contains a [bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell)) script to log and analyze data for that run.
 
 ### Phase 0: Validation
 
-0A: Detectors close, no source present (estimate background radiation, validate equipment and electronics working)
-0B: Detectors horizontally separated, no source present (expect lower cosmic ray coincident effect)
-0C: Detectors vertically stacked, no source present (expect high cosmic ray coincidences, crude cosmic ray telescope)
+Phase 0 tests are meant to validate the equipment, establish a baseline for environmental background radiation, and verify detection of coincidences. These tests are not strictly required to prove quantum entanglement, but are important to run before proceeding to ensure the equipment is working as expected.
+
+- 0A: Detectors close, no source present (estimate background radiation, validate equipment and electronics working)
+- 0B: Detectors horizontally separated, no source present (expect lower cosmic ray coincident effect)
+- 0C: Detectors vertically stacked, no source present (expect high cosmic ray coincidences, crude cosmic ray telescope)
+
+![0C Vertically Stacked Detectors](media/vertical-cosmic-ray-telescope-2.jpg)
+
+The expected results are that general CPM rates should be more or less consistent regardless of placement, but that coincident event detection rates should drop when the detectors are separated by a larger horizontal difference in test `0B` and should sharply increase when the detectors are stacked vertically in `0C`.
 
 ### Phase 1: Annihilation Pair Detection
 
-1A: Detectors in demonstration position, no source (establish baseline environmental background radiation and coincidences)
-1B: Positron source is added centered and inline with axis between the detectors (measure increase in singles counts and coincidences)
-1C: Positron source is moved off-axis from the line between the detectors (expect small drop in singles detections, but large drop in coincidences)
+The next phase is meant to demonstrate that entangled photon pairs are emitted in directions that are 180° off from one another, heading in opposite directions along the same axis.
+
+- 1A: Detectors in demonstration position, no source (establish baseline environmental background radiation and coincidences)
+- 1B: Positron source is added centered and inline with axis between the detectors (measure increase in singles counts and coincidences)
+- 1C: Positron source is moved off-axis from the line between the detectors (expect small drop in singles detections, but large drop in coincidences)
+
+![1B Positron source directly between detectors](media/direct-geometry-detections.jpg)
+
+The expected result is that coincident detections sharply increase from `1A` to `1B` when the positron source is placed exactly between the two directors, but that the coincident rate drops when the source is raised relative to the detectors (taking it off-axis) and making it unlikely for two entangled photons traveling in opposite directions to reach both detectors.
 
 ### Phase 2: Compton Polarimetry in Parallel Configuration
 
-2A: Detectors in Parallel Geometry Positions, no source present (establish baseline background radiation)
-2B: Detectors in Parallel Geometry Positions, source present without aluminum blocks (establish baseline coincidences without effect of scattered photons)
-2C: Detectors in Parallel Geometry Positions, source present with aluminum blocks (establish additional coincidences from scattered photons in parallel case)
+- 2A: Detectors in Parallel Geometry Positions, no source present (establish baseline background radiation)
+- 2B: Detectors in Parallel Geometry Positions, source present without aluminum blocks (establish baseline coincidences without effect of scattered photons)
+- 2C: Detectors in Parallel Geometry Positions, source present with aluminum blocks (establish additional coincidences from scattered photons in parallel case)
 
 ### Phase 3: Compton Polarimetry in Perpendicular Configuration
 
-3A: Detectors in Perpendicular Geometry Positions, no source present (establish baseline background radiation)
-3B: Detectors in Perpendicular Geometry Positions, source present without aluminum blocks (establish baseline coincidences without effect of scattered photons)
-3C: Detectors in Perpendicular Geometry Positions, source present with aluminum blocks (establish additional coincidences from scattered photons in perpendicular case)
+- 3A: Detectors in Perpendicular Geometry Positions, no source present (establish baseline background radiation)
+- 3B: Detectors in Perpendicular Geometry Positions, source present without aluminum blocks (establish baseline coincidences without effect of scattered photons)
+- 3C: Detectors in Perpendicular Geometry Positions, source present with aluminum blocks (establish additional coincidences from scattered photons in perpendicular case)
 
 ## Results
 
