@@ -281,9 +281,9 @@ The minimum experiments required to demonstrate quantum entanglement are defined
 
 Phase 0 tests are meant to validate the equipment, establish a baseline for environmental background radiation, and verify detection of coincidences. These tests are not strictly required to prove quantum entanglement, but are important to run before proceeding to ensure the equipment is working as expected.
 
-- 0A: Detectors close, no source present (estimate background radiation, validate equipment and electronics working)
-- 0B: Detectors horizontally separated, no source present (expect lower cosmic ray coincident effect)
-- 0C: Detectors vertically stacked, no source present (expect high cosmic ray coincidences, crude cosmic ray telescope)
+- **0A: Detectors close, no source present** (estimate background radiation, validate equipment and electronics working)
+- **0B: Detectors horizontally separated, no source present** (expect lower cosmic ray coincident effect)
+- **0C: Detectors vertically stacked, no source present** (expect high cosmic ray coincidences, crude cosmic ray telescope)
 
 ![0C Vertically Stacked Detectors](media/vertical-cosmic-ray-telescope-2.jpg)
 
@@ -293,9 +293,9 @@ The expected results are that general CPM rates should be more or less consisten
 
 The next phase is meant to demonstrate that entangled photon pairs are emitted in directions that are 180° off from one another, heading in opposite directions along the same axis.
 
-- 1A: Detectors in demonstration position, no source (establish baseline environmental background radiation and coincidences)
-- 1B: Positron source is added centered and inline with axis between the detectors (measure increase in singles counts and coincidences)
-- 1C: Positron source is moved off-axis from the line between the detectors (expect small drop in singles detections, but large drop in coincidences)
+- **1A: Detectors in demonstration position, no source** (establish baseline environmental background radiation and coincidences)
+- **1B: Positron source is added centered and inline with axis between the detectors** (measure increase in singles counts and coincidences)
+- **1C: Positron source is moved off-axis from the line between the detectors** (expect small drop in singles detections, but large drop in coincidences)
 
 ![1B Positron source directly between detectors](media/direct-geometry-detections.jpg)
 
@@ -303,16 +303,219 @@ The expected result is that coincident detections sharply increase from `1A` to 
 
 ### Phase 2: Compton Polarimetry in Parallel Configuration
 
-- 2A: Detectors in Parallel Geometry Positions, no source present (establish baseline background radiation)
-- 2B: Detectors in Parallel Geometry Positions, source present without aluminum blocks (establish baseline coincidences without effect of scattered photons)
-- 2C: Detectors in Parallel Geometry Positions, source present with aluminum blocks (establish additional coincidences from scattered photons in parallel case)
+This phase along with the next is where properties of entangled photons are measured. It uses a technique known as Compton Polarimetry. Because the polarizations of the entangled photons are perpendicular to one another (offset by 90° relative to the other) when one of these photons scatters, its preferred scattering angle will be along a plane that is perpendicular to the preferred scattering angle of its entangled partner photon.
+
+By placing aluminum blocks in the path of the photons, and placing detectors in either the same plane (parallel) or in a perpendicular plane (perpendicular) we can expect to observe different rates of coincident detections.
+
+- **2A: Detectors in Parallel Geometry Positions, no source present** (establish baseline background radiation)
+- **2B: Detectors in Parallel Geometry Positions, source present without aluminum blocks** (establish baseline coincidences without effect of scattered photons)
+- **2C: Detectors in Parallel Geometry Positions, source present with aluminum blocks** (establish additional coincidences from scattered photons in parallel case)
+
+![2C Parallel Polarimetry](media/parallel-polarimetry.jpg)
+
+The rate of coincident detections for the parallel case is expected by theory to be lower by an amount of roughly 2.6× compared to the perpendicular orientation of the detectors.
 
 ### Phase 3: Compton Polarimetry in Perpendicular Configuration
 
-- 3A: Detectors in Perpendicular Geometry Positions, no source present (establish baseline background radiation)
-- 3B: Detectors in Perpendicular Geometry Positions, source present without aluminum blocks (establish baseline coincidences without effect of scattered photons)
-- 3C: Detectors in Perpendicular Geometry Positions, source present with aluminum blocks (establish additional coincidences from scattered photons in perpendicular case)
+In this phase, we establish baseline background levels with and without the positron source, and detection rates with and without the presence of the aluminum blocks. But unlike Phase 2, in this case the detectors are placed in planes that are perpendicular to each other. This maximizes the rate of detection of coincidences for entangled photon pairs that are scattered by interacting with electrons in the aluminum blocks.
+
+- **3A: Detectors in Perpendicular Geometry Positions, no source present** (establish baseline background radiation)
+- **3B: Detectors in Perpendicular Geometry Positions, source present without aluminum blocks** (establish baseline coincidences without effect of scattered photons)
+- **3C: Detectors in Perpendicular Geometry Positions, source present with aluminum blocks** (establish additional coincidences from scattered photons in perpendicular case)
+
+![2C Perpendicular Polarimetry](media/perpendicular-polarimetry.jpg)
+
+We expect that after accounting for and subtracting background events, and detection levels without the aluminum blocks present, that the observed number of detections in experiment 3C will be 2.6× greater than was observed in experiment 2C after similarly subtracting out background events.
 
 ## Results
 
-Show histograms, summary of data runs, analysis, and evidence of entanglement compared to theoretical expectations.
+The following section presents a summary of experimental data from the phase 2 and phase 3 runs, and concludes with evidence of entanglement. Together these represent over 75 hours of data collection, resulted in over 200 megabytes worth of data.
+
+### Phase 2: Parallel Experiments
+
+The following are data from parallel geometry runs.
+
+#### 2A: Parallel, No Source
+
+```
+Run summary
+-----------
+Input file:      2A.csv
+Duration:        36624.2 s = 610.40 min = 10.173 h
+Left events:     14,644
+Right events:    14,885
+Left CPM:        24.0
+Right CPM:       24.4
+
+Window scan
+-----------
+ half_window_us  prompt_count  avg_lag_count  net_count  approx_z  li_ma_z  prompt_cpm  lag_cpm  net_cpm
+              1             0          0.000      0.000       NaN    0.000       0.000    0.000    0.000
+              2             2          0.000      2.000     1.414    3.203       0.003    0.000    0.003
+              3             2          0.000      2.000     1.414    3.203       0.003    0.000    0.003
+              5             2          0.000      2.000     1.414    3.203       0.003    0.000    0.003
+              7             2          0.000      2.000     1.414    3.203       0.003    0.000    0.003
+             10             2          0.000      2.000     1.414    3.203       0.003    0.000    0.003
+```
+
+#### 2B: Parallel, No Blocks
+
+```
+Run summary
+-----------
+Input file:      2B.csv
+Duration:        44309.5 s = 738.49 min = 12.308 h
+Left events:     198,362
+Right events:    204,420
+Left CPM:        268.6
+Right CPM:       276.8
+
+Window scan
+-----------
+ half_window_us  prompt_count  avg_lag_count  net_count  approx_z  li_ma_z  prompt_cpm  lag_cpm  net_cpm
+              1             2          2.833     -0.833    -0.379   -0.504       0.003    0.004   -0.001
+              2            17          4.750     12.250     2.627    4.070       0.023    0.006    0.017
+              3            19          6.083     12.917     2.579    3.930       0.026    0.008    0.017
+              5            24         10.000     14.000     2.401    3.545       0.032    0.014    0.019
+              7            28         14.167     13.833     2.130    3.078       0.038    0.019    0.019
+             10            36         19.250     16.750     2.253    3.237       0.049    0.026    0.023
+```
+
+#### 2C: Parallel
+
+```
+Run summary
+-----------
+Input file:      2C.csv
+Duration:        41085.5 s = 684.76 min = 11.413 h
+Left events:     193,788
+Right events:    200,681
+Left CPM:        283.0
+Right CPM:       293.1
+
+Window scan
+-----------
+ half_window_us  prompt_count  avg_lag_count  net_count  approx_z  li_ma_z  prompt_cpm  lag_cpm  net_cpm
+              1             1          3.250     -2.250    -1.091   -1.422       0.001    0.005   -0.003
+              2            21          5.167     15.833     3.095    4.874       0.031    0.008    0.023
+              3            23          6.500     16.500     3.038    4.701       0.034    0.009    0.024
+              5            24         10.000     14.000     2.401    3.545       0.035    0.015    0.020
+              7            30         13.667     16.333     2.472    3.612       0.044    0.020    0.024
+             10            34         20.500     13.500     1.829    2.594       0.050    0.030    0.020
+```
+
+### Phase 3: Perpendicular Experiments
+
+The following are data from perpendicular geometry runs.
+
+#### 3A: Perpendicular, No Source
+
+```
+Run summary
+-----------
+Input file:      3A.csv
+Duration:        35696.6 s = 594.94 min = 9.916 h
+Left events:     14,063
+Right events:    14,151
+Left CPM:        23.6
+Right CPM:       23.8
+
+Window scan
+-----------
+ half_window_us  prompt_count  avg_lag_count  net_count  approx_z  li_ma_z  prompt_cpm  lag_cpm  net_cpm
+              1             0          0.000      0.000       NaN    0.000       0.000    0.000    0.000
+              2             5          0.000      5.000     2.236    5.065       0.008    0.000    0.008
+              3             5          0.000      5.000     2.236    5.065       0.008    0.000    0.008
+              5             5          0.083      4.917     2.181    4.517       0.008    0.000    0.008
+              7             5          0.083      4.917     2.181    4.517       0.008    0.000    0.008
+             10             5          0.167      4.833     2.126    4.195       0.008    0.000    0.008
+```
+
+#### 3B: Perpendicular, No Blocks
+
+```
+Run summary
+-----------
+Input file:      3B.csv
+Duration:        39149.7 s = 652.49 min = 10.875 h
+Left events:     193,816
+Right events:    183,066
+Left CPM:        297.0
+Right CPM:       280.6
+
+Window scan
+-----------
+ half_window_us  prompt_count  avg_lag_count  net_count  approx_z  li_ma_z  prompt_cpm  lag_cpm  net_cpm
+              1             1          3.250     -2.250    -1.091   -1.422       0.002    0.005   -0.003
+              2            19          4.833     14.167     2.902    4.551       0.029    0.007    0.022
+              3            23          7.333     15.667     2.845    4.336       0.035    0.011    0.024
+              5            26         11.083     14.917     2.450    3.607       0.040    0.017    0.023
+              7            29         14.417     14.583     2.213    3.204       0.044    0.022    0.022
+             10            36         20.083     15.917     2.125    3.039       0.055    0.031    0.024
+```
+
+#### 3C: Perpendicular
+
+```
+Run summary
+-----------
+Input file:      3C.csv
+Duration:        45934.5 s = 765.57 min = 12.760 h
+Left events:     231,635
+Right events:    226,705
+Left CPM:        302.6
+Right CPM:       296.1
+
+Window scan
+-----------
+ half_window_us  prompt_count  avg_lag_count  net_count  approx_z  li_ma_z  prompt_cpm  lag_cpm  net_cpm
+              1             2          3.333     -1.333    -0.577   -0.763       0.003    0.004   -0.002
+              2            35          6.000     29.000     4.529    7.470       0.046    0.008    0.038
+              3            37          8.083     28.917     4.307    6.886       0.048    0.011    0.038
+              5            42         12.833     29.167     3.939    6.036       0.055    0.017    0.038
+              7            46         17.083     28.917     3.641    5.448       0.060    0.022    0.038
+             10            54         23.417     30.583     3.476    5.108       0.071    0.031    0.040
+```
+
+### Evidence of Entanglement
+
+Let us review a summary of the data to determine if we have witnessed any evidence of quantum entanglement in the simultaneously detected photon pairs.
+
+### Results Summary Table
+
+Taking the 2 microsecond time window from each of the above, we observe the following rates in terms of events per hour:
+
+| Run                            | Runtime (Hours) | Net Events (at 2µs) | Events/hr  |
+| :----------------------------- | --------------: | ------------------: | ---------: |
+| 2A - Parallel No Source        |  10.173         |  2.000              |   0.197    |
+| 2B - Parallel No Blocks        |  12.308         | 12.250              |   0.995    |
+| 2C - Parallel                  |  11.413         | 15.833              |   1.387    |
+| 3A - Perpendicular No Source   |   9.916         |  5.000              |   0.504    |
+| 3B - Perpendicular No Blocks   |  10.875         | 14.167              |   1.303    |
+| 3C - Perpendicular             |  12.760         | 29.000              |   2.273    |
+
+### Comparison to Theoretical Expectations
+
+A few things stand out from this. Despite both geometries having similar Right and Left CPMs (around 300), the `No Source` perpendicular has a significantly higher background coincidence rate (0.504 vs. 0.197 events per hour). This may be due to the fact that the elevated position of one of the detectors made it more sensitive to cosmic rays.
+
+As expected for both geometries, the addition of the aluminum blocks increased the rate of coincident detections:
+- The Perpendicular Geometry (3C) 1.768 events/hr > The Perpendicular Geometry without Blocks (3B) 1.303/hr
+- The Parallel Geometry (2C) 1.387 events/hr > The Parallel Geometry without Blocks (2B) 0.995/hr
+
+This indicates that the aluminum blocks, when present, are scattering the photons towards the detectors.
+
+Also as we would expect, the addition of aluminum blocks in the perpendicular geometry has a greater net effect increase, than it does in the parallel geometry:
+
+**Perpendicular:** 3B No Blocks 1.303 events/hr → 3C With Blocks 2.273 events/hr, net increase of 0.970 events/hr.
+**Parallel:** 2B No Blocks 0.995 events/hr → 2C With Blocks 1.387 events/hr, net increase of 0.392 events/hr.
+
+These values: 0.970 events/hr and 0.392 events/hr, best reflect the raw data after subtracting out background noise of detections that come straight from the positron source without being scattered by hitting an aluminum block, and so are the most useful values for direct comparison.
+
+We observe that for the ratio of these values, between the the perpendicular geometry (0.970) is 2.47× the value for the parallel geometry (0.392). So in other words, the effect in increasing detection events by adding the blocks is 2.47× greater for the perpendicular geometry.
+
+Of note, this value is nearly as much as the maximum theoretical ratio as predicted by the theory, which is that the perpendicular is 2.6×. 
+
+This bias is detection rates after Compton scattering suggests that the photons are not merely simultaneous in their detection, but are also quantum entangled, in that each photon has an (undetermined before measurement) but nevertheless a related polarization angle with its entangled twin. If these detectors were spaced at arbitrary distances (say many [light-years](https://en.wikipedia.org/wiki/Light-year)) we would still observe the same correlations, despite there being no possibility for classical influences to occur between these photons at sub-light or even at light speeds. 
+
+So how then do the photons now how to reflect appropriately off the aluminum to preserve these correlation statistics?
+
