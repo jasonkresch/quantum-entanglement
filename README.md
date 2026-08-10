@@ -9,65 +9,106 @@ This experiment has been updated to take advantage of more recent tools and tech
 * It uses an Arduino-based ESP32 with headers, which enables easy wiring to the Geiger counters for coincident detection, as well as data logging by connecting to a computer over USB.
 * It uses LEGO-compatible blocks to make the positioning of detectors, the positron source, and aluminum scattering blocks both flexible and repeatable.
 
+![Logging Geiger coincidences to a computer](media/computer-logging.jpg)
+
+Above is an image of the assembled kits, both wired into an Arduino, and connected to a computer via USB for logging and analysis. 
+
 ## Shopping List
 
-In total, the experiment can be put together for a total cost of around 500 USD.
+In total, the experiment can be put together for a total cost of around 500 USD (pricing information as of mid 2026).
 
-Link to the shopping list document.
+Here is a link to the [parts list](related-docs/Entanglement-Demo-Shopping-List.pdf).
 
 ### Assembling the Geiger Counters
 
+This experiment uses a kit to make each of the two Geiger counters. This requires some soldering. The kits arrive with the following parts:
+
 ![MightyOhm Kit Pre-Assembly](media/geiger-kit-pre-assembly.jpg)
+
+After soldering and attaching some screws, the assembled Geiger counters look like this:
 
 ![MightyOhm Kit Pre-Assembly](media/geiger-kit-post-assembly.jpg)
 
+The instructions for assembling the Geiger Counter kits can be found at [this link](related-docs/MightyOhm-Geiger-Counter-Assembly-Instructions.pdf).
+
+Conveniently, each Geiger Counter has [pin headers](https://en.wikipedia.org/wiki/Pin_header) which send a 100 microsecond pulse which can be interpreted by an Arduino device with headers. Using a [breadboard](https://en.wikipedia.org/wiki/Breadboard) together with and male-to-female [jumper wires](https://en.wikipedia.org/wiki/Jump_wire), the Geiger counters can be directly wired to the Arduino device without soldering.
+
 ### Testing the Geiger Counters
+
+The Geiger counters are sensitive to beta and gamma radiation, and any significant source of these can trigger the counter. The counters will also detect background radiation at a level of around 20 counts per minute at sea level. By arranging the detectors vertically, simultaneous detections will trigger several times a minute due to [cosmic-ray-generated](https://en.wikipedia.org/wiki/Cosmic_ray) [muons](https://en.wikipedia.org/wiki/Muon) passing from the upper atmosphere down to earth and passing through both detectors.
+
+Below is a link to a video demonstrating testing of the two detectors with a 1 μCi test source of Na-22. A source of positrons, such as Na-22, is required in order to perform some of the entangled photon pair experiments detailed later in this document. Check all applicable laws in your area and familiarize yourself with safe practices before obtaining, handling, or disposing of any radioactive sources. 
 
 [![Testing the Geiger Counters with Na-22 Source](https://img.youtube.com/vi/xobj9LGZI20/0.jpg)](https://www.youtube.com/watch?v=xobj9LGZI20)
 
 ## Programming the Microcontroller
 
-How to install Arduino IDA, setup dependencies, configure for sound, and install code.
+Before the Arduino device will work as intended for this project, it must be loaded with software. To do this, you must have the Arduino IDE installed.
 
-### Library Dependencies
+You may download the Arduino IDE for your operating system from [this link](https://www.arduino.cc/en/software/).
 
-In the Arduino IDA go to Library Manager, search for and add the following dependencies:
+Once it is installed, connect the Arduino device to your computer via a USB-C cable, make sure the cable supports data (sone USB cables are for power only).
 
-1. Adafruit SSD1306
+Then open the Arduino IDE by opening the micro-controller source code (known as a [sketch](https://en.wikipedia.org/wiki/Arduino#Sketch)) located in the [microcontroller-code](microcontroller-code) directory.
+
+Then select the board from the drop down list at the top of the interface:
+
+![Arduino IDE](media/arduino-ide.png)
+
+### Adding Library Dependencies
+
+Before you can compile the sketch you must add the appropriate library dependencies. To do this, click on the icon that looks like a set of books on the left hand side of the IDE, to make the "Library Manager" appear, then in the search box, search for, and then add, each of the following libraries:
+
+1. Adafruit BusIO
 2. Adafruit GFX Library
-3. DFRobotDFPlayerMini
+3. Adafruit SSD1306
+4. DFRobotDFPlayerMini
+
+### Compiling and Uploading the Code
+
+Once each of the library dependencies have been added, you can compile and upload the code to the Arduino device. To do this, click the icon at the top left which looks like a right-ward facing arrow. Note that it may take a few minutes to compile and transfer the code. Once it does, you will see lights flicker on the Arduino device and then it should simply show a solid blue LED light up. This indicates the sketch has been successfully compiled and transferred to the device and it is now running.
 
 ## Wiring the Breadboard
 
-Show detailed wiring diagram.
+The following represents the pin diagram for the Nano ESP32 with headers:
+
+![Arduino IDE](related-docs/esp32-pin-diagram.png)
+
+To wire the ESP32 to the two Geiger counters, a LED, a buzzer, and an optional speaker output, connect the wires to the pins as shown below:
 
 ```
-                                 Arduino Nano ESP32
-                                  TOP VIEW
-                
-                              USB-C connector here
-                                       ↑
+
+                                  Arduino Nano ESP32
+                                      TOP VIEW
+
+                     USB-C connection to Computer or Power Supply
+                                         ↑
         
-                        LEFT HEADER                    RIGHT HEADER
-                        ───────────                    ────────────
-                        D13                            D12
- OLED, buzzer VCCs →    3V3                            D11
-                        B0                             D10
-                        A0                             D9
-                        A1                             D8
-                        A2                             D7
-                        A3                             D6        ← buzzer signal
-          OLED SDA →    A4 / SDA                       D5        ← 330 Ω → LED anode
-          OLED SCL →    A5 / SCL                       D4
-                        A6                             D3        ← 1kΩ → Geiger RIGHT J6 pulse
-                        A7                             D2        ← 1kΩ → Geiger LEFT J6 pulse
-                        VUSB                           GND       ← Geiger J6 GNDs, LED cathode, buzzer GND
-                        B1                             RESET
-          OLED GND →    GND                            D0 / RX0
-                        VIN                            D1 / TX0
+                        LEFT HEADER               RIGHT HEADER
+                        ───────────               ────────────
+                        D13                       D12
+ OLED, buzzer VCCs →    3V3                       D11
+                        B0                        D10
+                        A0                        D9
+                        A1                        D8
+                        A2                        D7
+                        A3                        D6        ← buzzer signal
+          OLED SDA →    A4 / SDA                  D5        ← 330 Ω → LED anode
+          OLED SCL →    A5 / SCL                  D4
+                        A6                        D3        ← 1kΩ → Geiger RIGHT J6 pulse
+                        A7                        D2        ← 1kΩ → Geiger LEFT J6 pulse
+                        VUSB                      GND       ← Geiger J6 GNDs, LED cathode, buzzer GND
+                        B1                        RESET
+          OLED GND →    GND                       D0 / RX0
+                        VIN                       D1 / TX0
 
 
 ```
+
+The end result should look something like the following when all wired up:
+
+![Arduino IDE](related-docs/bread-board-wiring.jpg)
+
 
 [![Detecting Simultaneous Entangled Photons](https://img.youtube.com/vi/ERMolkiLw2E/0.jpg)](https://www.youtube.com/watch?v=ERMolkiLw2E)
 
