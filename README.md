@@ -78,39 +78,46 @@ To wire the ESP32 to the two Geiger counters, a LED, a buzzer, and an optional s
 
 ```
 
-                                  Arduino Nano ESP32
-                                      TOP VIEW
+                                 Arduino Nano ESP32
+                                     TOP VIEW
 
-                     USB-C connection to Computer or Power Supply
-                                         ↑
-        
-                        LEFT HEADER               RIGHT HEADER
-                        ───────────               ────────────
-                        D13                       D12
- OLED, buzzer VCCs →    3V3                       D11
-                        B0                        D10
-                        A0                        D9
-                        A1                        D8
-                        A2                        D7
-                        A3                        D6        ← buzzer signal
-          OLED SDA →    A4 / SDA                  D5        ← 330 Ω → LED anode
-          OLED SCL →    A5 / SCL                  D4
-                        A6                        D3        ← 1kΩ → Geiger RIGHT J6 pulse
-                        A7                        D2        ← 1kΩ → Geiger LEFT J6 pulse
-                        VUSB                      GND       ← Geiger J6 GNDs, LED cathode, buzzer GND
-                        B1                        RESET
-          OLED GND →    GND                       D0 / RX0
-                        VIN                       D1 / TX0
+                    USB-C connection to Computer or Power Supply
+                                        ↑
+       
+                       LEFT HEADER          RIGHT HEADER
+                       ───────────          ────────────
+                       D13                  D12
+OLED, buzzer VCCs →    3V3                  D11
+                       B0                   D10
+                       A0                   D9
+                       A1                   D8
+                       A2                   D7
+                       A3                   D6        ← buzzer signal
+         OLED SDA →    A4 / SDA             D5        ← 330 Ω → LED anode
+         OLED SCL →    A5 / SCL             D4
+                       A6                   D3        ← 1kΩ → Geiger RIGHT J6 pulse
+                       A7                   D2        ← 1kΩ → Geiger LEFT J6 pulse
+                       VUSB                 GND       ← Geiger GNDs, LED cathode, buzzer GND
+                       B1                   RESET
+         OLED GND →    GND                  D0 / RX0
+                       VIN                  D1 / TX0
 
 
 ```
 
 The end result should look something like the following when all wired up:
 
-![Arduino IDE](related-docs/bread-board-wiring.jpg)
+![Breadboard Wiring](media/bread-board-wiring.jpg)
 
+To verify operation, you can test with either a positron source placed between the detectors as shown in this video:
 
 [![Detecting Simultaneous Entangled Photons](https://img.youtube.com/vi/ERMolkiLw2E/0.jpg)](https://www.youtube.com/watch?v=ERMolkiLw2E)
+
+Or alternatively, you can stack the detectors one on top of the other, as is shown here:
+
+![Cosmic Ray Telescope](media/vertical-cosmic-ray-telescope.jpg)
+
+And wait for a cosmic ray muon to trigger simultaneous detection. A simultaneous detection event should trigger a flash and beep, as well as the OLED display to update the count of the number of simultaneous detections.
 
 ### Setting up DFRobot DFPlayer Mini
 
