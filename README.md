@@ -506,8 +506,8 @@ This indicates that the aluminum blocks, when present, are scattering the photon
 
 Also as we would expect, the addition of aluminum blocks in the perpendicular geometry has a greater net effect increase, than it does in the parallel geometry:
 
-**Perpendicular:** 3B No Blocks 1.303 events/hr → 3C With Blocks 2.273 events/hr, net increase of 0.970 events/hr.
-**Parallel:** 2B No Blocks 0.995 events/hr → 2C With Blocks 1.387 events/hr, net increase of 0.392 events/hr.
+- **Perpendicular:** 3B No Blocks 1.303 events/hr → 3C With Blocks 2.273 events/hr, net increase of 0.970 events/hr.
+- **Parallel:** 2B No Blocks 0.995 events/hr → 2C With Blocks 1.387 events/hr, net increase of 0.392 events/hr.
 
 These values: 0.970 events/hr and 0.392 events/hr, best reflect the raw data after subtracting out background noise of detections that come straight from the positron source without being scattered by hitting an aluminum block, and so are the most useful values for direct comparison.
 
