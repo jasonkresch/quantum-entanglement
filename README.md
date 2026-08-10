@@ -95,8 +95,8 @@ OLED, buzzer VCCs →    3V3                  D11
                        A3                   D6        ← buzzer signal
          OLED SDA →    A4 / SDA             D5        ← 330 Ω → LED anode
          OLED SCL →    A5 / SCL             D4
-                       A6                   D3        ← 1kΩ → Geiger RIGHT J6 pulse
-                       A7                   D2        ← 1kΩ → Geiger LEFT J6 pulse
+                       A6                   D3        ← 1 kΩ → Geiger RIGHT J6 pulse
+                       A7                   D2        ← 1 kΩ → Geiger LEFT J6 pulse
                        VUSB                 GND       ← Geiger GNDs, LED cathode, buzzer GND
                        B1                   RESET
          OLED GND →    GND                  D0 / RX0
@@ -109,9 +109,26 @@ The end result should look something like the following when all wired up:
 
 ![Breadboard Wiring](media/bread-board-wiring.jpg)
 
+Note when connecting the pulse wires to the Geiger counter kit, the MightyOhm Geiger Counter has a section labeled J6 Pulse, with 3 pins Left to Right:
+
+| Pin 1     | Pin 2       | Pin 3        |
+| :-------- | :---------- | :----------- | 
+| VCC       | PULSE       |  GND         |
+
+Note: `Pin 1` is marked with a small white triangle. `Pin 1` is not used and not connected to the ESP32.
+
+Only `Pin 2` and `Pin 3` on each Geiger Counter needs to connect to the breadboard. `Pin 2` on the Left Geiger counter should connect to `D2` while `Pin 2` on the Right Geiger Counter should connect to `D3`. The grounds (`Pin 3`) on each Geiger counter should connect to `GND` on the ESP32. Ideally, there should be a 100 kΩ [pull-down resistor](https://en.wiktionary.org/wiki/pull-down_resistor) between the Pulse lines `D2` and `D3` and `GND`. This will increase the stability of the signal and prevent false positives due to loose wires, static build up, or the wires picking up signals acting as antennae.
+
 To verify operation, you can test with either a positron source placed between the detectors as shown in this video:
 
 [![Detecting Simultaneous Entangled Photons](https://img.youtube.com/vi/ERMolkiLw2E/0.jpg)](https://www.youtube.com/watch?v=ERMolkiLw2E)
+
+After everything is wired:
+1. Power on both MightOhm GeigerCounters by flipping the power switch
+2. Connect USB power to the Arduino board from a Computer using a USB-C data cable
+3. Start python logger to read data over USB
+
+You should see events on the screen each time either Geiger flashes.
 
 Or alternatively, you can stack the detectors one on top of the other, as is shown here:
 
