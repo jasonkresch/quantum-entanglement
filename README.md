@@ -47,7 +47,7 @@ After soldering and attaching some screws, the assembled Geiger counters look li
 
 The instructions for assembling the Geiger Counter kits can be found at [this link](related-docs/MightyOhm-Geiger-Counter-Assembly-Instructions.pdf).
 
-Conveniently, each Geiger Counter has [pin headers](https://en.wikipedia.org/wiki/Pin_header) which send a 100 microsecond pulse which can be interpreted by an Arduino device with headers. Using a [breadboard](https://en.wikipedia.org/wiki/Breadboard) together with and male-to-female [jumper wires](https://en.wikipedia.org/wiki/Jump_wire), the Geiger counters can be directly wired to the Arduino device without soldering.
+Conveniently, each Geiger Counter has [pin headers](https://en.wikipedia.org/wiki/Pin_header) which send a 100 microsecond pulse which can be interpreted by an Arduino device with headers. Using a [breadboard](https://en.wikipedia.org/wiki/Breadboard) together with male-to-female [jumper wires](https://en.wikipedia.org/wiki/Jump_wire), the Geiger counters can be directly wired to the Arduino device without soldering.
 
 ### Testing the Geiger Counters
 
@@ -145,7 +145,7 @@ To verify operation, you can test with either a positron source placed between t
 [![Detecting Simultaneous Entangled Photons](https://img.youtube.com/vi/ERMolkiLw2E/0.jpg)](https://www.youtube.com/watch?v=ERMolkiLw2E)
 
 After everything is wired:
-1. Power on both MightyOhm GeigerCounters by flipping the power switch
+1. Power on both MightyOhm Geiger Counters by flipping the power switch
 2. Connect USB power to the Arduino board from a computer using a USB-C data cable
 3. Start python logger to read data over USB
 
@@ -198,12 +198,10 @@ In the end, the DFPlayer Mini should appear like this:
                  ESP A1 →  TX                             USB+
                            DAC_R                          ADKEY_2
                            DAC_I                          ADKEY_1
-     speaker terminal 1 →  SPK_1  ←|                      IO_2
-                ESP GND →  GND     | 0.1 µF capacitor     GND
-     speaker terminal 2 →  SPK_2  ←|                      IO_1
+     speaker terminal 1 →  SPK_1                          IO_2
+                ESP GND →  GND                            GND
+     speaker terminal 2 →  SPK_2                          IO_1
 ```
-
-Note: The 0.1 µF ceramic across the speaker pins is optional but can help reduce high frequency noise.
 
 #### Wire the DFPlayer to the Speaker
 
@@ -276,7 +274,7 @@ python3 log_geiger.py --port /dev/cu.usbmodem206EF13166CC2 --out output_file.csv
 
 On MacOS, typical USB device names can by found by looking at: `/dev/cu.usbmodem*` and `/dev/cu.usbserial*`
 
-Note that the particular USB device name can vary change from system to system. The Arduino IDE displays the exact device name to when you correctly select the board.
+Note that the particular USB device name can vary from system to system. The Arduino IDE displays the exact device name to when you correctly select the board.
 
 ### Analyzing Data
 
@@ -350,7 +348,7 @@ The next phase is meant to demonstrate that entangled photon pairs are emitted i
 
 ![1B Positron source directly between detectors](media/direct-geometry-detections.jpg)
 
-The expected result is that coincident detections sharply increase from `1A` to `1B` when the positron source is placed exactly between the two directors, but that the coincident rate drops when the source is raised relative to the detectors (taking it off-axis) and making it unlikely for two entangled photons traveling in opposite directions to reach both detectors.
+The expected result is that coincident detections sharply increase from `1A` to `1B` when the positron source is placed exactly between the two detectors, but that the coincident rate drops when the source is raised relative to the detectors (taking it off-axis) and making it unlikely for two entangled photons traveling in opposite directions to reach both detectors.
 
 ### Phase 2: Compton Polarimetry in Parallel Configuration
 
@@ -380,7 +378,7 @@ We expect that after accounting for and subtracting background events, and detec
 
 ## Results
 
-The following section presents a summary of experimental data from the phase 2 and phase 3 runs, and concludes with evidence of entanglement. Together these represent over 75 hours of data collection, resulted in over 200 megabytes worth of data.
+The following section presents a summary of experimental data from the phase 2 and phase 3 runs, and concludes with evidence of entanglement. Together these represent over 75 hours of data collection, and resulted in over 200 megabytes worth of raw event timing data.
 
 ### Phase 2: Parallel Experiments
 
@@ -550,7 +548,7 @@ Taking the 2 microsecond time window from each of the above, we observe the foll
 A few things stand out from this. Despite both geometries having similar Right and Left CPMs (around 300), the `No Source` perpendicular has a significantly higher background coincidence rate (0.504 vs. 0.197 events per hour). This may be due to the fact that the elevated position of one of the detectors made it more sensitive to cosmic rays.
 
 As expected for both geometries, the addition of the aluminum blocks increased the rate of coincident detections:
-- The Perpendicular Geometry (3C) 1.768 events/hr > The Perpendicular Geometry without Blocks (3B) 1.303/hr
+- The Perpendicular Geometry (3C) 2.273 events/hr > The Perpendicular Geometry without Blocks (3B) 1.303/hr
 - The Parallel Geometry (2C) 1.387 events/hr > The Parallel Geometry without Blocks (2B) 0.995/hr
 
 This indicates that the aluminum blocks, when present, are scattering the photons towards the detectors.
@@ -564,9 +562,17 @@ These values: 0.970 events/hr and 0.392 events/hr, best reflect the raw data aft
 
 We observe that for the ratio of these values, between the the perpendicular geometry (0.970) is 2.47× the value for the parallel geometry (0.392). So in other words, the effect in increasing detection events by adding the blocks is 2.47× greater for the perpendicular geometry.
 
-Of note, this value is nearly as much as the maximum theoretical ratio as predicted by the theory, which is that the perpendicular is 2.6×. 
+Of note, this value is consistent with, and close to, the idealized theoretical ratio of 2.6× for annihilation photons Compton-scattered at 90°.
 
-This bias is detection rates after Compton scattering suggests that the photons are not merely simultaneous in their detection, but are also quantum entangled, in that each photon has an (undetermined before measurement) but nevertheless a related polarization angle with its entangled twin. If these detectors were spaced at arbitrary distances (say many [light-years](https://en.wikipedia.org/wiki/Light-year)) we would still observe the same correlations, despite there being no possibility for classical influences to occur between these photons at sub-light or even at light speeds. 
+According to the Klein–Nishina Compton-scattering formula, a 511 keV annihilation photon scattered at 90° has polarization analyzing power *a* = 2/3. Thus for an idealized photon pair created from an electron-positron annihilation in which both photons are Compton-scattered at 90°, the perpendicular-to-parallel coincidence ratio is:
+
+```
+       (1 + a^2)     (1 + (2/3)^2)   (1 + 4/9)    13
+R   =  __________ =  _____________ = _________ = ____ = 2.6
+       (1 - a^2)     (1 - (2/3)^2)   (1 - 4/9)     5
+```
+
+This bias in detection rates after Compton scattering suggests that the photons are not merely simultaneous in their detection, but are also quantum entangled, in that each photon has an (undetermined before measurement) but nevertheless a related polarization angle with its entangled twin. If these detectors were spaced at arbitrary distances (say many [light-years](https://en.wikipedia.org/wiki/Light-year)) we would still observe the same correlations, despite there being no possibility for classical influences to occur between these photons at sub-light or even at light speeds. 
 
 So how then do the photons know how to reflect appropriately off the aluminum to preserve these correlation statistics?
 
