@@ -175,7 +175,7 @@ All wiring between the ESP32 and the DFPlayer is done on the left-side of the DF
 
 ![DFPlayer Schematic](related-docs/dfplayer-mini-pin-layout.png)
 
-Connect via jumper wires the following four pins from the EST32 to the DFPlayer:
+Connect via jumper wires the following four pins from the ESP32 to the DFPlayer:
 
 ```
 Nano ESP32 5V/VBUS/VIN-side  → DFPlayer VCC
