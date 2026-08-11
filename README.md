@@ -51,7 +51,7 @@ Conveniently, each Geiger Counter has [pin headers](https://en.wikipedia.org/wik
 
 ### Testing the Geiger Counters
 
-The Geiger counters are sensitive to beta and gamma radiation, and any significant source of these can trigger the counter. The counters will also detect background radiation at a level of around 20 counts per minute at sea level. By arranging the detectors vertically, simultaneous detections will trigger several times a minute due to [cosmic-ray-generated](https://en.wikipedia.org/wiki/Cosmic_ray) [muons](https://en.wikipedia.org/wiki/Muon) passing from the upper atmosphere down to earth and passing through both detectors.
+The Geiger counters are sensitive to beta and gamma radiation, and any significant source of these can trigger the counter. The counters will also detect background radiation at a level of around 20 counts per minute at sea level. By arranging the detectors vertically, simultaneous detections will trigger about once a minute due to [cosmic-ray-generated](https://en.wikipedia.org/wiki/Cosmic_ray) [muons](https://en.wikipedia.org/wiki/Muon) passing from the upper atmosphere down to earth and passing through both detectors.
 
 Below is a link to a video demonstrating testing of the two detectors with a 1 μCi test source of Na-22. A source of positrons, such as Na-22, is required in order to perform some of the entangled photon pair experiments detailed later in this document.
 
@@ -257,14 +257,14 @@ Note that running this script requires specification of the USB port to which th
 
 ```bash
 # Windows
-python3 log_geiger.py --port COM5 --out --out output_file.csv
+python3 log_geiger.py --port COM5 --out output_file.csv
 ```
 
 ### Linux Devices
 
 ```bash
 # Linux
-python3 log_geiger.py --port /dev/ttyACM0 --out --out output_file.csv
+python3 log_geiger.py --port /dev/ttyACM0 --out output_file.csv
 ```
 On Linux, typical USB device names can by found by looking at: `/dev/ttyACM*` or `/dev/ttyUSB*`
 
