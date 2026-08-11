@@ -1,6 +1,6 @@
 # At Home Quantum Entanglement Demo
 
-This repository features documentation, code, and instructions to perform an at-home demonstration of [quantum entanglement](https://en.wikipedia.org/wiki/Quantum_entanglement). It works by detecting statistical anti-correlations in the [Compton scattering](https://en.wikipedia.org/wiki/Compton_scattering) of high-energy entangled photons produced fro an electron positron matter-antimatter [annihilation](https://en.wikipedia.org/wiki/Annihilation) event.
+This repository features documentation, code, and instructions to perform an at-home demonstration of [quantum entanglement](https://en.wikipedia.org/wiki/Quantum_entanglement). It works by detecting statistical correlations in the [Compton scattering](https://en.wikipedia.org/wiki/Compton_scattering) of high-energy entangled photons produced from an electron positron matter-antimatter [annihilation](https://en.wikipedia.org/wiki/Annihilation) event.
 
 This experimental design is based on an experiment performed and described by [George Musser](https://en.wikipedia.org/wiki/George_Musser) on his [blog](https://www.criticalopalescence.com/p/how-to-build-your-own-quantum-entanglement-experiment-part-1-of-2) and as featured in a 2013 [article](https://www.scientificamerican.com/blog/critical-opalescence/how-to-build-your-own-quantum-entanglement-experiment-part-1-of-2/) in [Scientific American](https://www.scientificamerican.com/).
 
@@ -19,10 +19,10 @@ Aside from demonstrating Quantum Entanglement (recognized in the [2022 Nobel Pri
 
 - [Ernest Rutherford's](https://en.wikipedia.org/wiki/Ernest_Rutherford) discovery of the [radioactive transformation of elements](https://en.wikipedia.org/wiki/Nuclear_transmutation) earning him the [1908 Nobel Prize in Chemistry](https://www.nobelprize.org/prizes/chemistry/1908/summary/) as this experiment involves the radioactive transformation of [Sodium](https://en.wikipedia.org/wiki/Sodium) metal into [Neon](https://en.wikipedia.org/wiki/Neon) gas.
 - [Arthur Compton's](https://en.wikipedia.org/wiki/Arthur_Compton) discovery of [Compton scattering](https://en.wikipedia.org/wiki/Compton_scattering) winning him the [1927 Nobel Prize in Physics](https://www.nobelprize.org/prizes/physics/1927/summary/) as this experiment directly relies on Compton Scattering gamma rays off of Aluminum blocks.
-- [Albert Einstein's](https://en.wikipedia.org/wiki/Albert_Einstein) proof that light is made of photons, through his analysis of the [photoelectric effect](https://en.wikipedia.org/wiki/Photoelectric_effect), earning him the [1921 Nobel Prize in Physics](https://www.nobelprize.org/prizes/physics/1921/summary/) as this experiment's Geiger-Müller tube can only detects photons carrying enough energy to dislodge electrons from the tube's wall.
-- [Paul Dirac's](https://en.wikipedia.org/wiki/Paul_Dirac) prediction of, and [Carl Anderson's](https://en.wikipedia.org/wiki/Carl_David_Anderson) later experimental discovery of [antimatter](https://en.wikipedia.org/wiki/Antimatter) and in particular, [positrons](https://en.wikipedia.org/wiki/Positron) earning Dirac and Anderson the [1933](https://www.nobelprize.org/prizes/physics/1933/summary/) and [1936 Nobel Prizes in Physics](https://www.nobelprize.org/prizes/physics/1936/summary/), respectively. This experiment uses positrons, and their antimatter annihilation to create an entangled photon pair. Incidentally this also demonstrates Einstein's [mass-energy equivalence](https://en.wikipedia.org/wiki/Mass%E2%80%93energy_equivalence) (E = mc<sup>2</sup>) as the energy of the gamma rays equals the rest-mass of the electron and positiron (511 [keV](https://en.wikipedia.org/wiki/Electronvolt)).
+- [Albert Einstein's](https://en.wikipedia.org/wiki/Albert_Einstein) proof that light is made of photons, through his analysis of the [photoelectric effect](https://en.wikipedia.org/wiki/Photoelectric_effect), earning him the [1921 Nobel Prize in Physics](https://www.nobelprize.org/prizes/physics/1921/summary/) as this experiment's Geiger-Müller tube can only detect photons carrying enough energy to dislodge electrons from the tube's wall.
+- [Paul Dirac's](https://en.wikipedia.org/wiki/Paul_Dirac) prediction of, and [Carl Anderson's](https://en.wikipedia.org/wiki/Carl_David_Anderson) later experimental discovery of [antimatter](https://en.wikipedia.org/wiki/Antimatter) and in particular, [positrons](https://en.wikipedia.org/wiki/Positron) earning Dirac and Anderson the [1933](https://www.nobelprize.org/prizes/physics/1933/summary/) and [1936 Nobel Prizes in Physics](https://www.nobelprize.org/prizes/physics/1936/summary/), respectively. This experiment uses positrons, and their antimatter annihilation to create an entangled photon pair. Incidentally this also demonstrates Einstein's [mass-energy equivalence](https://en.wikipedia.org/wiki/Mass%E2%80%93energy_equivalence) (E = mc<sup>2</sup>) as the energy of the gamma rays equals the rest-mass of the electron and positron (511 [keV](https://en.wikipedia.org/wiki/Electronvolt)).
 - [Victor Hess's](https://en.wikipedia.org/wiki/Victor_Hess) discovery of [cosmic rays](https://en.wikipedia.org/wiki/Cosmic_ray) which earned him the [1936 Nobel Prize in Physics](https://www.nobelprize.org/prizes/physics/1936/summary/) as when these two Geiger counters are stacked vertically, it functions as a cosmic ray telescope, able to detect [muons](https://en.wikipedia.org/wiki/Muon) that travel both Geiger tubes.
-- [Walther Bothe's](https://en.wikipedia.org/wiki/Walther_Bothe) invention of the [Coincidence Method](https://en.wikipedia.org/wiki/Coincidence_method) which earned him the [1954 Nobel Prize in Physics](https://www.nobelprize.org/prizes/physics/1954/summary/) as this experiment uses the simultaneous detections of two detectors to determine when that two photons result from the same radioactive decay/annihilation event. This is the basis upon which of [PET scans](https://en.wikipedia.org/wiki/Positron_emission_tomography) work.
+- [Walther Bothe's](https://en.wikipedia.org/wiki/Walther_Bothe) invention of the [Coincidence Method](https://en.wikipedia.org/wiki/Coincidence_method) which earned him the [1954 Nobel Prize in Physics](https://www.nobelprize.org/prizes/physics/1954/summary/) as this experiment uses the simultaneous detections of two detectors to determine when that two photons resulted from the same radioactive decay/annihilation event. This is the basis upon which of [PET scans](https://en.wikipedia.org/wiki/Positron_emission_tomography) work.
 
 ## Parts List
 
@@ -31,6 +31,9 @@ In total, the experiment can be put together for a total cost of around 500 USD 
 Here is a link to the [parts list](related-docs/Entanglement-Demo-Shopping-List.pdf).
 
 Note: If one already has the equipment for soldering it can be done for much less.
+
+> [!WARNING]
+> This project involves high voltages, lead soldering, and radioactive sources. Follow all applicable laws and regulations regarding, source-license requirements, radiation-safety practices, and apply lead-handling and ventilation precautions when soldering. Be sure to familiarize yourself with safe and legal practices before obtaining, handling, or disposing of any radioactive sources. 
 
 ### Assembling the Geiger Counters
 
@@ -50,9 +53,14 @@ Conveniently, each Geiger Counter has [pin headers](https://en.wikipedia.org/wik
 
 The Geiger counters are sensitive to beta and gamma radiation, and any significant source of these can trigger the counter. The counters will also detect background radiation at a level of around 20 counts per minute at sea level. By arranging the detectors vertically, simultaneous detections will trigger several times a minute due to [cosmic-ray-generated](https://en.wikipedia.org/wiki/Cosmic_ray) [muons](https://en.wikipedia.org/wiki/Muon) passing from the upper atmosphere down to earth and passing through both detectors.
 
-Below is a link to a video demonstrating testing of the two detectors with a 1 μCi test source of Na-22. A source of positrons, such as Na-22, is required in order to perform some of the entangled photon pair experiments detailed later in this document. Check all applicable laws in your area and familiarize yourself with safe practices before obtaining, handling, or disposing of any radioactive sources. 
+Below is a link to a video demonstrating testing of the two detectors with a 1 μCi test source of Na-22. A source of positrons, such as Na-22, is required in order to perform some of the entangled photon pair experiments detailed later in this document.
 
 [![Testing the Geiger Counters with Na-22 Source](https://img.youtube.com/vi/xobj9LGZI20/0.jpg)](https://www.youtube.com/watch?v=xobj9LGZI20)
+
+As a sanity check to ensure proper function of the Geiger counters, you can expect numbers around these approximate values:
+- Expect 15 - 25 Counts Per Minute for Geiger Counters at sea level without proximity to a radiation source (higher rates at greater elevations).
+- Expect 800 - 1,200 Counters Per Minute when 1 μCi test source of Na-22 is within close proximity to the Geiger tube.
+- Expect ~1 CPM of simultaneous pair detections when tubes are stacked one on top of the other at sea level (higher rates at greater elevations).
 
 ## Programming the Microcontroller
 
@@ -60,7 +68,7 @@ Before the Arduino device will work as intended for this project, it must be loa
 
 You may download the Arduino IDE for your operating system from [this link](https://www.arduino.cc/en/software/).
 
-Once it is installed, connect the Arduino device to your computer via a USB-C cable, make sure the cable supports data (sone USB cables are for power only).
+Once it is installed, connect the Arduino device to your computer via a USB-C cable, make sure the cable supports data (some USB cables are for power only).
 
 Then open the Arduino IDE by opening the micro-controller source code (known as a [sketch](https://en.wikipedia.org/wiki/Arduino#Sketch)) located in the [microcontroller-code](microcontroller-code) directory.
 
@@ -137,8 +145,8 @@ To verify operation, you can test with either a positron source placed between t
 [![Detecting Simultaneous Entangled Photons](https://img.youtube.com/vi/ERMolkiLw2E/0.jpg)](https://www.youtube.com/watch?v=ERMolkiLw2E)
 
 After everything is wired:
-1. Power on both MightOhm GeigerCounters by flipping the power switch
-2. Connect USB power to the Arduino board from a Computer using a USB-C data cable
+1. Power on both MightyOhm GeigerCounters by flipping the power switch
+2. Connect USB power to the Arduino board from a computer using a USB-C data cable
 3. Start python logger to read data over USB
 
 You should see events on the screen each time either Geiger flashes.
@@ -165,7 +173,7 @@ That is, first create a directory named `MP3` at the root level of the microSD c
 
 All wiring between the ESP32 and the DFPlayer is done on the left-side of the DFPlayer:
 
-![Arduino IDE](related-docs/dfplayer-mini-pin-layout.png)
+![DFPlayer Schematic](related-docs/dfplayer-mini-pin-layout.png)
 
 Connect via jumper wires the following four pins from the EST32 to the DFPlayer:
 
@@ -214,7 +222,7 @@ Once the speakers are wired correctly to the DFPlayer, you can verify that the M
 
 ## Collecting and Analyzing Data
 
-This project comes with scripts to collect and analyze data, and even comes with a number of pre-set experiments to peform. These scripts, and experiments, can be found in the [experiments](experiments) directory. The two scripts are:
+This project comes with scripts to collect and analyze data, and even comes with a number of pre-set experiments to perform. These scripts, and experiments, can be found in the [experiments](experiments) directory. The two scripts are:
 
 ```
 log_geiger.py
@@ -222,6 +230,16 @@ analyze_geiger_run.py
 ```
 
 These are [python](https://en.wikipedia.org/wiki/Python_(programming_language)) scripts and require `python3` in order to run.
+
+Before attempting to run these commands, you may need to setup your python3 environment first. For example, by running the following set of commands:
+
+```bash
+$ git clone https://github.com/jasonkresch/quantum-entanglement.git
+$ cd quantum-entanglement
+$ ./setup.sh
+$ source .venv/bin/activate
+```
+
 
 ## Collecting Data
 
@@ -248,6 +266,7 @@ python3 log_geiger.py --port COM5 --out --out output_file.csv
 # Linux
 python3 log_geiger.py --port /dev/ttyACM0 --out --out output_file.csv
 ```
+On Linux, typical USB device names can by found by looking at: `/dev/ttyACM*` or `/dev/ttyUSB*`
 
 ### MacOS Devices
 ```bash
@@ -255,7 +274,9 @@ python3 log_geiger.py --port /dev/ttyACM0 --out --out output_file.csv
 python3 log_geiger.py --port /dev/cu.usbmodem206EF13166CC2 --out output_file.csv
 ```
 
-Note that the particular USB device name will change from system to system. The Arduino IDE displays the exact device name to use for logging.
+On MacOS, typical USB device names can by found by looking at: `/dev/cu.usbmodem*` and `/dev/cu.usbserial*`
+
+Note that the particular USB device name can vary change from system to system. The Arduino IDE displays the exact device name to when you correctly select the board.
 
 ### Analyzing Data
 
@@ -281,7 +302,7 @@ This will result in the following output to the screen:
 
 ![Logging Events](media/analyze_geiger_run_screenshot.png)
 
-The output information includes the run duration, total number of left and right events, as well as counts per minute for both detectors. It then reports, for various time windows ranging from 1 microsecond to 1000 microseconds, how many coincident events were observed within each of those windows. Generally 3 microseconds is the most robust, as it is narrow enough to register all genuine coincidences, without being so wide that it includes spurious events that occur near the same time but are not genuinely correlated.
+The output information includes the run duration, total number of left and right events, as well as counts per minute for both detectors. It then reports, for various time windows ranging from 1 microsecond to 1000 microseconds, how many coincident events were observed within each of those windows. Generally the 3 microsecond half-window is the most robust, as it is narrow enough to register all genuine coincidences, without being so wide that it includes spurious events that occur near the same time but are not genuinely correlated. Note that this setting means any other detection event happening within -3 µs to +3 µs within another event is counted as simultaneous.
 
 The rate of these spurious events are continuously estimated by looking for coincident events if the right or left detector's reported events are time-shifted by a significant period (say half a second). These are reported as `lag counts` and should be subtracted from the raw observed counts to yield a more accurate net count.
 
@@ -547,5 +568,5 @@ Of note, this value is nearly as much as the maximum theoretical ratio as predic
 
 This bias is detection rates after Compton scattering suggests that the photons are not merely simultaneous in their detection, but are also quantum entangled, in that each photon has an (undetermined before measurement) but nevertheless a related polarization angle with its entangled twin. If these detectors were spaced at arbitrary distances (say many [light-years](https://en.wikipedia.org/wiki/Light-year)) we would still observe the same correlations, despite there being no possibility for classical influences to occur between these photons at sub-light or even at light speeds. 
 
-So how then do the photons now how to reflect appropriately off the aluminum to preserve these correlation statistics?
+So how then do the photons know how to reflect appropriately off the aluminum to preserve these correlation statistics?
 
