@@ -13,11 +13,13 @@ This experiment has been updated to take advantage of more recent tools and tech
 
 Above is an image of the assembled kits, both wired into an Arduino, and connected to a computer via USB for logging and analysis. 
 
-## Shopping List
+## Parts List
 
 In total, the experiment can be put together for a total cost of around 500 USD (pricing information as of mid 2026).
 
 Here is a link to the [parts list](related-docs/Entanglement-Demo-Shopping-List.pdf).
+
+Note: If one already has the equipment for soldering it can be done for much less.
 
 ### Assembling the Geiger Counters
 
