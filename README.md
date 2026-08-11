@@ -247,6 +247,21 @@ The detection event lines are prefaced with `E` while the summary report lines a
 
 ![Logging Events](media/log_geiger_screenshot.png)
 
+Events Sample Output:
+```
+E,123456789,L,2,0,0
+E,123456843,R,3,1,0
+```
+
+The fields are: `E`, `t_us`, `detector` (L/R), `pin` (2/3), `prompt_matches`, `delayed_matches`.
+
+Summaries Output:
+```
+S,60000000,895.000,902.000,2.700,2.500,895,902,3,2,0
+```
+
+The fields are: `S`, `t_us`, `left_cpm`, `right_cpm`, `prompt_cpm`, `delayed_cpm`, `total_left`, `total_right`, `total_prompt`, `total_delayed`, `dropped`.
+
 When you have collected sufficient data, you can end the logging script by sending an exit command (generally `Ctrl+C` on most systems).
 
 Note that running this script requires specification of the USB port to which the Arduino device is attached, this can vary from system to system, below are some examples:
